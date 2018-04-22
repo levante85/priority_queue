@@ -1,23 +1,19 @@
 package pqueue
 
-import "github.com/cheekybits/genny/generic"
-
-//go:generate genny -in=$GOFILE -out=gen-$GOFILE gen "ValueType=string"
-type ValueType generic.Type
-
-// New instanciate and returns a new priority queue
-func New() *Heap {
-	return &Heap{make([]ValueType, 1), 0}
+// New instantiate and returns a new priority queue
+func New(less Less) *Heap {
+	return &Heap{make([]interface{}, 1), less, 0}
 }
+
+// Less is the type of the comparision function that needs to be
+// passed to the heap
+type Less func(i, j int, values []interface{}) bool
 
 // Heap is the priority queue concrete implementation
 type Heap struct {
-	slice []ValueType
+	slice []interface{}
+	less  Less
 	num   int
-}
-
-func (q *Heap) less(i, j int) bool {
-	return q.slice[i] < q.slice[j]
 }
 
 func (q *Heap) swap(i, j int) {
@@ -25,7 +21,7 @@ func (q *Heap) swap(i, j int) {
 }
 
 func (q *Heap) swim(k int) {
-	for k > 1 && q.less(k/2, k) {
+	for k > 1 && q.less(k/2, k, q.slice) {
 		q.swap(k/2, k)
 		k /= 2
 	}
@@ -34,10 +30,10 @@ func (q *Heap) swim(k int) {
 func (q *Heap) sink(k int) {
 	for 2*k <= len(q.slice) {
 		j := 2 * k
-		if j < len(q.slice) && q.less(j, j+1) {
+		if j < len(q.slice) && q.less(j, j+1, q.slice) {
 			j++
 		}
-		if !q.less(k, j) {
+		if !q.less(k, j, q.slice) {
 			break
 		}
 		q.swap(k, j)
@@ -46,14 +42,14 @@ func (q *Heap) sink(k int) {
 }
 
 // Insert adds an element to the queue
-func (q *Heap) Insert(element ValueType) {
+func (q *Heap) Insert(element interface{}) {
 	q.slice = append(q.slice, element)
 	q.num++
 	q.swim(q.num)
 }
 
 // PopMax removes and returns the max element in the queue
-func (q *Heap) PopMax() ValueType {
+func (q *Heap) PopMax() interface{} {
 	max := q.slice[1]
 	q.num--
 	q.swap(1, q.num)
@@ -64,7 +60,7 @@ func (q *Heap) PopMax() ValueType {
 }
 
 // Max returns the max element in the queue but doesn't remove it
-func (q *Heap) Max() ValueType {
+func (q *Heap) Max() interface{} {
 	return q.slice[1]
 }
 
@@ -73,7 +69,7 @@ func (q *Heap) Size() int {
 	return len(q.slice)
 }
 
-// Count retursn the actual number of elements present in the queue
+// Count returns the actual number of elements present in the queue
 func (q *Heap) Count() int {
 	return q.num
 }
