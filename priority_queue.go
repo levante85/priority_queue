@@ -1,4 +1,4 @@
-package priority_queue
+package pqueue
 
 import "github.com/cheekybits/genny/generic"
 
