@@ -1,2 +1,2 @@
 ### TODO list
-* Failing tests fix it
+* Failing tests fix it - FIXED

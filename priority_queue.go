@@ -31,10 +31,8 @@ func (q *Heap) swim(k int) {
 }
 
 func (q *Heap) sink(k int) {
-	for 2*k <= len(q.slice) {
-		j := 2 * k
-
-		if j < len(q.slice) && q.compare(j, j+1, q.slice) {
+	for j := 2 * k; j <= q.Count(); k = j {
+		if j < q.Count() && q.compare(j, j+1, q.slice) {
 			j++
 		}
 		if !q.compare(k, j, q.slice) {
@@ -42,7 +40,6 @@ func (q *Heap) sink(k int) {
 		}
 
 		q.swap(k, j)
-		k = j
 	}
 }
 
@@ -57,10 +54,9 @@ func (q *Heap) Insert(element interface{}) {
 // element in the queue
 func (q *Heap) PopTop() interface{} {
 	max := q.slice[1]
-	q.num--
 	q.swap(1, q.num)
-	var i interface{}
-	q.slice[q.num+1] = i
+	q.slice = q.slice[0:q.num]
+	q.num--
 	q.sink(1)
 
 	return max

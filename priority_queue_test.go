@@ -1,7 +1,6 @@
 package pqueue
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -49,9 +48,7 @@ func TestPopTopEdge3Elements(t *testing.T) {
 		pq.Insert(num[n])
 	}
 
-	fmt.Println(pq.slice)
 	_ = pq.PopTop()
-	fmt.Println(pq.slice)
 }
 
 func TestInsertPopTop(t *testing.T) {
