@@ -28,7 +28,7 @@ like so:
 
 Otherwise if one wants to create min priority queue instantiate qa pqueue with the New method and a great Comparator function like so:
 ```
-    func great(i ,j int, values []interface{}) bool {
+    func greater(i ,j int, values []interface{}) bool {
         l, _ := values[i].(int)
         r, _ := values[j].(int)
         return l > r
