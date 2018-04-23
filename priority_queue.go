@@ -30,8 +30,8 @@ func (q *Heap) swim(k int) {
 }
 
 func (q *Heap) sink(k int) {
-	for j := 2 * k; j <= q.Count(); k = j {
-		if j < q.Count() && q.compare(j, j+1, q.slice) {
+	for j := 2 * k; j <= q.Size(); k = j {
+		if j < q.Size() && q.compare(j, j+1, q.slice) {
 			j++
 		}
 		if !q.compare(k, j, q.slice) {
@@ -45,15 +45,15 @@ func (q *Heap) sink(k int) {
 // Insert adds an element to the queue
 func (q *Heap) Insert(element interface{}) {
 	q.slice = append(q.slice, element)
-	q.swim(q.Count())
+	q.swim(q.Size())
 }
 
 // PopTop removes and returns the max or min ( depending on the comparator function )
 // element in the queue
 func (q *Heap) PopTop() interface{} {
 	top := q.slice[1]
-	q.swap(1, q.Count())
-	q.slice = q.slice[0:q.Count()]
+	q.swap(1, q.Size())
+	q.slice = q.slice[0:q.Size()]
 	q.sink(1)
 
 	return top
@@ -67,15 +67,10 @@ func (q *Heap) Top() interface{} {
 
 // Size returns the size of the underling slice with deleted elements
 func (q *Heap) Size() int {
-	return len(q.slice)
-}
-
-// Count returns the actual number of elements present in the queue
-func (q *Heap) Count() int {
-	return q.Size() - 1
+	return len(q.slice) - 1
 }
 
 // Empty returns whether the priority queue contains no elements
 func (q *Heap) Empty() bool {
-	return q.Count() == 0
+	return q.Size() == 0
 }

@@ -19,7 +19,7 @@ func TestInsert(t *testing.T) {
 		pq.Insert(num[n])
 	}
 
-	assert.Equal(t, pq.Count(), len(num), "Inserting went wrong")
+	assert.Equal(t, pq.Size(), len(num), "Inserting went wrong")
 }
 
 func TestInserttop(t *testing.T) {
@@ -29,7 +29,7 @@ func TestInserttop(t *testing.T) {
 		pq.Insert(num[n])
 	}
 
-	assert.Equal(t, pq.Count(), len(num), "Inserting went wrong")
+	assert.Equal(t, pq.Size(), len(num), "Inserting went wrong")
 	top := pq.Top().(int)
 	assert.Equal(t, top, 9, "Inserting went wrong")
 
@@ -52,9 +52,9 @@ func TestInsertPopTop(t *testing.T) {
 		pq.Insert(num[n])
 	}
 
-	assert.Equal(t, pq.Count(), len(num), "Inserting went wrong")
+	assert.Equal(t, pq.Size(), len(num), "Inserting went wrong")
 	assert.Equal(t, pq.PopTop().(int), 9, "Pop not working")
-	assert.Equal(t, pq.Count(), 8, "PopTop went wrong")
+	assert.Equal(t, pq.Size(), 8, "PopTop went wrong")
 
 }
 
@@ -65,10 +65,10 @@ func TestInsertPopTopMulti(t *testing.T) {
 		pq.Insert(num[n])
 	}
 
-	assert.Equal(t, pq.Count(), len(num), "Inserting went wrong")
+	assert.Equal(t, pq.Size(), len(num), "Inserting went wrong")
 	assert.Equal(t, pq.PopTop().(int), 9, "Pop not working")
-	assert.Equal(t, pq.Count(), 8, "PopTop went wrong")
+	assert.Equal(t, pq.Size(), 8, "PopTop went wrong")
 	assert.Equal(t, pq.PopTop().(int), 8, "Pop not working")
-	assert.Equal(t, pq.Count(), 7, "PopTop went wrong")
+	assert.Equal(t, pq.Size(), 7, "PopTop went wrong")
 
 }
