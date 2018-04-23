@@ -8,8 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-Queue can be either a max or min priority queue depending on the given Comparator function if v[i] < [j] the it's a max priority queue, otherwise if the function is
-v[i] > v[j] then it becomes min queue. 
+Queue can be either a max or min priority queue depending on the given Comparator function.
 
 ## How do I use it?
 
