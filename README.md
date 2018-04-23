@@ -2,9 +2,9 @@
 
 ### Package pqueue provides a simple implementation
 
-[![GoDoc](https://godoc.org/github.com/menefotto/priority_queue?status.svg)](https://godoc.org/github.com/menefotto/priority_queue)
-[![Build Status](https://travis-ci.org/menefotto/priority_queue.svg?branch=master)](https://travis-ci.org/menefotto/priority_queue)
-[![Coverage Status](https://coveralls.io/repos/github/menefotto/priority_queue/badge.svg?branch=master)](https://coveralls.io/github/menefotto/priority_queue?branch=master)
+[![GoDoc](https://godoc.org/github.com/menefotto/pqueue?status.svg)](https://godoc.org/github.com/menefotto/pqueue)
+[![Build Status](https://travis-ci.org/menefotto/pqueue.svg?branch=master)](https://travis-ci.org/menefotto/pqueue)
+[![Coverage Status](https://coveralls.io/repos/github/menefotto/pqueue/badge.svg?branch=master)](https://coveralls.io/github/menefotto/pqueue?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
