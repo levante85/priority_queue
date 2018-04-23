@@ -51,12 +51,12 @@ func (q *Heap) Insert(element interface{}) {
 // PopTop removes and returns the max or min ( depending on the comparator function )
 // element in the queue
 func (q *Heap) PopTop() interface{} {
-	max := q.slice[1]
+	top := q.slice[1]
 	q.swap(1, q.Count())
 	q.slice = q.slice[0:q.Count()]
 	q.sink(1)
 
-	return max
+	return top
 }
 
 // Top returns the max or min element ( depending on the comparator function )
