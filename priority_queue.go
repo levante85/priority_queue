@@ -79,3 +79,8 @@ func (q *Heap) Size() int {
 func (q *Heap) Empty() bool {
 	return q.Size() == 0
 }
+
+// Slice returns the underlining array
+func (q *Heap) Slice() []interface{} {
+	return q.slice[1:]
+}
