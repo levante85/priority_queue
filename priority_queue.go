@@ -74,3 +74,8 @@ func (q *Heap) Size() int {
 func (q *Heap) Count() int {
 	return q.Size() - 1
 }
+
+// Empty returns whether the priority queue contains no elements
+func (q *Heap) Empty() bool {
+	return q.Count() == 0
+}
