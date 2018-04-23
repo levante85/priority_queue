@@ -2,7 +2,7 @@ package pqueue
 
 // New instantiate and returns a new priority queue
 func New(comp Comparator) *Heap {
-	return &Heap{make([]interface{}, 1), comp, 0}
+	return &Heap{make([]interface{}, 1), comp}
 }
 
 // Comparator is the type of the comparision function that needs to be
@@ -16,7 +16,6 @@ type Comparator func(i, j int, values []interface{}) bool
 type Heap struct {
 	slice   []interface{}
 	compare Comparator
-	num     int
 }
 
 func (q *Heap) swap(i, j int) {
@@ -46,17 +45,15 @@ func (q *Heap) sink(k int) {
 // Insert adds an element to the queue
 func (q *Heap) Insert(element interface{}) {
 	q.slice = append(q.slice, element)
-	q.num++
-	q.swim(q.num)
+	q.swim(q.Count())
 }
 
 // PopTop removes and returns the max or min ( depending on the comparator function )
 // element in the queue
 func (q *Heap) PopTop() interface{} {
 	max := q.slice[1]
-	q.swap(1, q.num)
-	q.slice = q.slice[0:q.num]
-	q.num--
+	q.swap(1, q.Count())
+	q.slice = q.slice[0:q.Count()]
 	q.sink(1)
 
 	return max
@@ -75,5 +72,5 @@ func (q *Heap) Size() int {
 
 // Count returns the actual number of elements present in the queue
 func (q *Heap) Count() int {
-	return q.num
+	return q.Size() - 1
 }
