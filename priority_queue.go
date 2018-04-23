@@ -30,7 +30,9 @@ func (q *Heap) swim(k int) {
 }
 
 func (q *Heap) sink(k int) {
-	for j := 2 * k; j <= q.Size(); k = j {
+	for 2*k <= q.Size() {
+		j := 2 * k
+
 		if j < q.Size() && q.compare(j, j+1, q.slice) {
 			j++
 		}
@@ -39,6 +41,8 @@ func (q *Heap) sink(k int) {
 		}
 
 		q.swap(k, j)
+
+		k = j
 	}
 }
 

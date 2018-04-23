@@ -72,3 +72,16 @@ func TestInsertPopTopMulti(t *testing.T) {
 	assert.Equal(t, pq.Size(), 7, "PopTop went wrong")
 
 }
+
+func TestInsertPopTopAll(t *testing.T) {
+	pq := New(less)
+	num := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+	for n := range num {
+		pq.Insert(num[n])
+	}
+
+	for n := len(num); !pq.Empty(); n-- {
+		v := pq.PopTop()
+		assert.Equal(t, n, v.(int), "Not ok should be equal")
+	}
+}
