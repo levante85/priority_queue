@@ -58,7 +58,7 @@ func (q *Heap) Insert(element interface{}) {
 func (q *Heap) PopTop() interface{} {
 	top := q.slice[1]
 	q.swap(1, q.Size())
-	q.slice = q.slice[0:q.Size()]
+	q.slice = q.slice[:q.Size()]
 	q.sink(1)
 
 	return top

@@ -1,7 +1,6 @@
 package pqueue
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -81,7 +80,6 @@ func TestInsertPopTopAll(t *testing.T) {
 		pq.Insert(num[n])
 	}
 
-	fmt.Println(pq.slice)
 	for n := len(num); !pq.Empty(); n-- {
 		v := pq.PopTop()
 		assert.Equal(t, n, v.(int), "Not ok should be equal")
