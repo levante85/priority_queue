@@ -1,6 +1,6 @@
 # priority queue
 
-### Simple priority queue implementation
+### Package pqueue provides a simple implementation
 
 Queue can be either a max or min priority queue depending on the given Comparator function if v[i] < [j] the it's a max priority queue, otherwise if the function is
 v[i] > v[j] then it becomes min queue. 

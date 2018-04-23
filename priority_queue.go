@@ -33,12 +33,14 @@ func (q *Heap) swim(k int) {
 func (q *Heap) sink(k int) {
 	for 2*k <= len(q.slice) {
 		j := 2 * k
+
 		if j < len(q.slice) && q.compare(j, j+1, q.slice) {
 			j++
 		}
 		if !q.compare(k, j, q.slice) {
 			break
 		}
+
 		q.swap(k, j)
 		k = j
 	}
@@ -57,7 +59,8 @@ func (q *Heap) PopTop() interface{} {
 	max := q.slice[1]
 	q.num--
 	q.swap(1, q.num)
-	q.slice[q.num+1] = -1
+	var i interface{}
+	q.slice[q.num+1] = i
 	q.sink(1)
 
 	return max

@@ -1,6 +1,7 @@
 package pqueue
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -11,7 +12,9 @@ func debug(s []interface{}, t *testing.T) {
 }
 
 func compare(i, j int, values []interface{}) bool {
-	return values[i].(int) < values[j].(int)
+	l, _ := values[i].(int)
+	r, _ := values[j].(int)
+	return l < r
 }
 
 func TestInsert(t *testing.T) {
@@ -37,6 +40,18 @@ func TestInserttop(t *testing.T) {
 	debug(pq.slice, t)
 	assert.Equal(t, top, 9, "Inserting went wrong")
 
+}
+
+func TestPopTopEdge3Elements(t *testing.T) {
+	pq := New(compare)
+	num := []int{1, 2, 3}
+	for n := range num {
+		pq.Insert(num[n])
+	}
+
+	fmt.Println(pq.slice)
+	_ = pq.PopTop()
+	fmt.Println(pq.slice)
 }
 
 func TestInsertPopTop(t *testing.T) {
