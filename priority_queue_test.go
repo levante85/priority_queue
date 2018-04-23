@@ -1,6 +1,7 @@
 package pqueue
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -80,8 +81,31 @@ func TestInsertPopTopAll(t *testing.T) {
 		pq.Insert(num[n])
 	}
 
+	fmt.Println(pq.slice)
 	for n := len(num); !pq.Empty(); n-- {
 		v := pq.PopTop()
 		assert.Equal(t, n, v.(int), "Not ok should be equal")
+	}
+}
+
+func TestSink(t *testing.T) {
+	pq := New(less)
+	num := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+	for n := range num {
+		pq.Insert(num[n])
+	}
+
+	_ = pq.PopTop()
+	_ = pq.PopTop()
+
+	res := []int{9, 8, 6, 7, 3, 2, 5, 1, 4}
+	for i := 1; i < len(pq.slice); i++ {
+		v := pq.slice[i].(int)
+		if res[i-1] != v {
+			t.Log(res)
+			t.Log(pq.slice[1:])
+			t.Log(v, res[i])
+			t.Fatal("The slice isn't in the state it should be")
+		}
 	}
 }

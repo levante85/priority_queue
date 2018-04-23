@@ -36,6 +36,7 @@ func (q *Heap) sink(k int) {
 		if j < q.Size() && q.compare(j, j+1, q.slice) {
 			j++
 		}
+
 		if !q.compare(k, j, q.slice) {
 			break
 		}
